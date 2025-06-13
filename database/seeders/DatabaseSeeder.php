@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RolesAndPermissionsSeeder::class,
             AdminPanelSettingSeeder::class,
+            LocationSeeder::class,
+            PropertyTypeSeeder::class,
+
             // Add more seeders as needed
 
         ]);

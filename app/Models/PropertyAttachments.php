@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Property extends Model
+class PropertyAttachments extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $table = 'properties';
+    protected $table = 'property_attachments';
 }

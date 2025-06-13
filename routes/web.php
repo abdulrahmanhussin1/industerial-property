@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\Settings\AdminPanelSettingController;
 
 /*
@@ -33,6 +34,14 @@ Route::prefix('admin')->middleware(['auth', 'verified','checkRole'])->group(func
 
     Route::resource('/roles', RoleController::class);
     Route::resource('/users', UserController::class);
+
+    Route::get('properties/{propertyType}', [PropertyController::class, 'index'])->name('properties.index');
+    Route::get('properties/create', [PropertyController::class, 'create'])->name('properties.create');
+    Route::post('properties', [PropertyController::class, 'store'])->name('properties.store');
+    Route::get('properties/{property}/edit', [PropertyController::class, 'edit'])->name('properties.edit');
+    Route::put('properties/{property}', [PropertyController::class, 'update'])->name('properties.update');
+    Route::delete('properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy');
+    Route::get('properties/{property}/show', [PropertyController::class, 'show'])->name('properties.show');
 
     // Route::get('/admin_panel_settings', [AdminPanelSettingController::class, 'index'])->name('admin_panel_settings.index');
     // Route::put('/admin_panel_settings/{id}', [AdminPanelSettingController::class, 'update'])->name('admin_panel_settings.update');

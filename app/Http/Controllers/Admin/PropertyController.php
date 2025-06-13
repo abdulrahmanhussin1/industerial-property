@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin;
-use App\Models\PropertyType;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class PropertyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($propertyTypeId)
     {
-        $propertyTypes = PropertyType::select('id', 'name')
-            ->where('status', 'active')
-            ->get();
-        return view('admin.home', compact('propertyTypes'));
+        // Fetch properties based on the property type
+        $properties = Property::where('property_type_id', $propertyTypeId)
+        ->where('status', 'active')
+        ->paginate(12);
+
+        // Return the view with properties
+        return view('admin.pages.properties.index', compact('properties'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +42,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Admin $admin)
+    public function show(Property $property)
     {
         //
     }
@@ -47,7 +50,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit(Property $property)
     {
         //
     }
@@ -55,7 +58,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Property $property)
     {
         //
     }
@@ -63,7 +66,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy(Property $property)
     {
         //
     }

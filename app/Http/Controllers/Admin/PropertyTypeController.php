@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Property;
+use App\Models\PropertyType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PropertyController extends Controller
+class PropertyTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Property $property)
+    public function show(PropertyType $propertyType)
     {
         //
     }
@@ -42,7 +43,7 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Property $property)
+    public function edit(PropertyType $propertyType)
     {
         //
     }
@@ -50,7 +51,7 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Property $property)
+    public function update(Request $request, PropertyType $propertyType)
     {
         //
     }
@@ -58,7 +59,7 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $property)
+    public function destroy(PropertyType $propertyType)
     {
         //
     }

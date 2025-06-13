@@ -35,6 +35,14 @@ class RolesAndPermissionsSeeder extends Seeder
                 'users.create',
                 'users.edit',
                 'users.destroy',
+
+                /* Properties */
+                'properties.index',
+                'properties.show',
+                'properties.create',
+                'properties.edit',
+                'properties.destroy',
+                
             ],
         ];
 
