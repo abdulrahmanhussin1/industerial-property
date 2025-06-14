@@ -23,6 +23,17 @@
     </x-breadcrumb>
 {{-- End breadcrumbs --}}
 <div class="container py-5">
+    <div class="row my-3">
+                    @if (App\Traits\AppHelper::perUser('properties.create'))
+                <div class="text-end">
+                    <a href="{{ route('properties.create') }}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i>
+                        {{ __('Add New Property') }}
+                    </a>
+                </div>
+                
+            @endif
+    </div>
     <div class="row g-4">
         @foreach ($propertyTypes as $type)
             <div class="col-md-6 col-lg-6">

@@ -21,6 +21,8 @@ class RolesAndPermissionsSeeder extends Seeder
                 'admin_panel_settings.index',
                 'admin_panel_settings.update',
 
+                /*dashboard*/
+                'profile.edit',
                 /*roles*/
                 'roles.index',
                 'roles.show',

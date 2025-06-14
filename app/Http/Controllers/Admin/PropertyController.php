@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Location;
 use App\Models\Property;
+use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,7 +30,10 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        $locations = Location::select('id', 'name')->where('status','active')->get();
+        $propertyTypes = PropertyType::select('id', 'name')->where('status', 'active')->get();
+
+        return view('admin.pages.properties.create_edit', compact('locations', 'propertyTypes'));
     }
 
     /**

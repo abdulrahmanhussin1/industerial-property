@@ -4,17 +4,17 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ route('home.index') }}" class="logo d-flex align-items-center">
             <img src="{{ asset('admin-assets') }}/assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">{{ str_replace('_',' ',config('app.name', 'Laravel')) }}</span>
+            <span class="d-none d-lg-block">{{ str_replace('_', ' ', config('app.name', 'Laravel')) }}</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
+        {{-- <i class="bi bi-list toggle-sidebar-btn"></i> --}}
     </div><!-- End Logo -->
 
-    <div class="search-bar">
+    {{-- <div class="search-bar">
         <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="query" placeholder="Search" title="Enter search keyword">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
-    </div><!-- End Search Bar -->
+    </div><!-- End Search Bar --> --}}
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -176,7 +176,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="@if (Auth()->user()->photo && Storage::exists(Auth()->user()->photo)) {{ asset('storage') . '/' .Auth::user()->photo }} @else {{ asset('admin-assets/assets/img/avatar.jpg') }} @endif"
+                    <img src="@if (Auth()->user()->photo && Storage::exists(Auth()->user()->photo)) {{ asset('storage') . '/' . Auth::user()->photo }} @else {{ asset('admin-assets/assets/img/avatar.jpg') }} @endif"
                         alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">{{ Str::ucfirst(Auth::user()->name) }}</span>
                 </a><!-- End Profile Iamge Icon -->
@@ -191,7 +191,8 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{ route('users.show',['user' => auth()->id()]) }}">
+                        <a class="dropdown-item d-flex align-items-center"
+                            href="{{ route('profile.edit') }}">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -200,7 +201,7 @@
                         <hr class="dropdown-divider">
                     </li>
 
-                   {{--  <li>
+                    {{--  <li>
                         <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                             <i class="bi bi-gear"></i>
                             <span>Account Settings</span>
@@ -217,6 +218,20 @@
                     </li>
 --}}
 
+                    @if(App\Traits\AppHelper::perUser('roles.index'))
+                    <li>
+                        <a href="{{ route('roles.index') }}" class="dropdown-item d-flex align-items-center">
+                            <i class="bi bi-person"></i><span>{{ __('Roles') }}</span>
+                        </a>
+                    </li>
+                    @endif
+                    @if(App\Traits\AppHelper::perUser('users.index'))
+                    <li>
+                        <a href="{{ route('users.index') }}" class="dropdown-item d-flex align-items-center">
+                            <i class="bi bi-person"></i><span>{{ __('Users') }}</span>
+                        </a>
+                    </li>
+                    @endif
                     <li>
                         <hr class="dropdown-divider">
                     </li>
