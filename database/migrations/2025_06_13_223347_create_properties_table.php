@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title',255);
             $table->integer('land_area');
-            $table->enum('hangar_type', ['hangar', 'truss'])->nullable();
+            $table->enum('hangar_type', ['هنجر', 'جمالون'])->nullable();
             $table->integer('hangar_area')->nullable();
             $table->decimal('hangar_height', 5, 2)->nullable();
             $table->integer('admin_floors')->nullable();

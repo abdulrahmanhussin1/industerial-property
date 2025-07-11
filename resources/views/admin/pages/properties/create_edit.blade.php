@@ -58,8 +58,8 @@
                     <label class="form-label">Hangar Type</label>
                     <select name="hangar_type" class="form-control">
                         <option value="">Select Type</option>
-                        <option value="hangar" {{ old('hangar_type', $property->hangar_type ?? '') == 'hangar' ? 'selected' : '' }}>Hangar</option>
-                        <option value="truss" {{ old('hangar_type', $property->hangar_type ?? '') == 'truss' ? 'selected' : '' }}>Truss</option>
+                        <option value="هنجر" {{ old('hangar_type', $property->hangar_type ?? '') == 'هنجر' ? 'selected' : '' }}>هنجر</option>
+                        <option value="جمالون" {{ old('hangar_type', $property->hangar_type ?? '') == 'جمالون' ? 'selected' : '' }}>جمالون</option>
                     </select>
                 </div>
 

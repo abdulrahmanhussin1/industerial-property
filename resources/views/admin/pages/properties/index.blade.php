@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('title')
-    {{ __('Properties Page ') }}
+    {{ __('صفحة العقارات ') }}
 @endsection
 @section('css')
     <style>
@@ -16,14 +16,14 @@
 @endsection
 @section('content')
     {{-- Start breadcrumbs --}}
-    <x-breadcrumb pageName="Properties">
-        <x-breadcrumb-item><a href="{{ route('home.index') }}">{{ 'Home' }}</a></x-breadcrumb-item>
+    <x-breadcrumb pageName="العقارات">
+        <x-breadcrumb-item><a href="{{ route('home.index') }}">{{ 'الصفحة الرئيسيية' }}</a></x-breadcrumb-item>
         <x-breadcrumb-item>{{ __($propertyType->name) }}</x-breadcrumb-item>
     </x-breadcrumb>
     {{-- End breadcrumbs --}}
     <div class="card">
         <div class="card-header bg-white border-0">
-            <h2 class="text-center text-dark fw-bold mb-0">{{ __('Properties') }}</h2>
+            <h2 class="text-center text-dark fw-bold mb-0">{{ __('العقارات') }}</h2>
         </div>
         <div class="card-body">
             {{-- Display success message --}}
@@ -129,7 +129,7 @@
 
             @empty
                 <div class="container w-50">
-                    <div class="alert alert-warning">No properties found.</div>
+                    <div class="alert alert-warning">لا يوجد عقارات مسجلة </div>
                 </div>
             @endforelse
         </div>

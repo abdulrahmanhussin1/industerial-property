@@ -165,12 +165,12 @@ class PropertyController extends Controller
      */
     protected function deleteAttachments(Property $property): void
     {
-        $attachments = $property->attachments;
+        $attachments = $property->images;
 
         foreach ($attachments as $attachment) {
             Storage::delete($attachment->path);
         }
 
-        $property->attachments()->delete(); // Clean DB
+        $property->images()->delete(); // Clean DB
     }
 }
