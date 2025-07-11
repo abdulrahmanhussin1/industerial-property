@@ -18,8 +18,8 @@
 @endsection
 @section('content')
 {{-- Start breadcrumbs --}}
-    <x-breadcrumb pageName="Home">
-        <x-breadcrumb-item>{{ __('Home') }}</x-breadcrumb-item>
+    <x-breadcrumb pageName=" الرئيسية">
+        <x-breadcrumb-item>{{ __('الصفحة الرئيسية') }}</x-breadcrumb-item>
     </x-breadcrumb>
 {{-- End breadcrumbs --}}
 <div class="container py-5">
@@ -28,7 +28,7 @@
                 <div class="text-end">
                     <a href="{{ route('properties.create') }}" class="btn btn-primary">
                         <i class="bi bi-plus-circle"></i>
-                        {{ __('Add New Property') }}
+                        {{ __('اضافة عقار جديد') }}
                     </a>
                 </div>
                 
