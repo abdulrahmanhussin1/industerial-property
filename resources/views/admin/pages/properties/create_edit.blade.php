@@ -6,9 +6,8 @@
 @section('content')
  {{-- Start breadcrumbs --}}
     <x-breadcrumb pageName="Properties">
-        <x-breadcrumb-item>{{ __('Home') }}</x-breadcrumb-item>
-        <x-breadcrumb-item>{{ __('Properties') }}</x-breadcrumb-item>
-        <x-breadcrumb-item>{{ isset($property) ? 'Edit Property' : 'Create Property' }}</x-breadcrumb-item>
+        <x-breadcrumb-item><a href="{{ route('home.index') }}">{{ __('Home') }}</a></x-breadcrumb-item>
+       <x-breadcrumb-item>{{ isset($property) ? 'Edit Property' : 'Create Property' }}</x-breadcrumb-item>
     </x-breadcrumb>
     {{-- End breadcrumbs --}}
 
@@ -18,6 +17,7 @@
             <h4>{{ isset($property) ? 'Edit Property' : 'Create Property' }}</h4>
         </div>
         <div class="card-body my-3">
+            @include('admin.layouts.alerts')
             <form method="POST" action="{{ isset($property) ? route('properties.update', $property->id) : route('properties.store') }}" enctype="multipart/form-data">
                 @csrf
                 @if(isset($property))
@@ -101,7 +101,7 @@
                     <label class="form-label">Status</label>
                     <select name="status" class="form-control">
                         <option value="active" {{ old('status', $property->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
-                        <option value="inactive" {{ old('status', $property->status ?? '') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                        {{-- <option value="inactive" {{ old('status', $property->status ?? '') == 'inactive' ? 'selected' : '' }}>Inactive</option> --}}
                     </select>
                 </div>
 

@@ -17,8 +17,8 @@
 @section('content')
     {{-- Start breadcrumbs --}}
     <x-breadcrumb pageName="Properties">
-        <x-breadcrumb-item>{{ __('Home') }}</x-breadcrumb-item>
-        <x-breadcrumb-item>{{ __('Properties') }}</x-breadcrumb-item>
+        <x-breadcrumb-item><a href="{{ route('home.index') }}">{{ 'Home' }}</a></x-breadcrumb-item>
+        <x-breadcrumb-item>{{ __($propertyType->name) }}</x-breadcrumb-item>
     </x-breadcrumb>
     {{-- End breadcrumbs --}}
     <div class="card">
@@ -75,27 +75,58 @@
         {{-- Grid of Property Cards --}}
         <div class="row g-4">
             @forelse ($properties as $property)
-                <div class="col-3">
-                    <a href="{{ route('properties.show', ['property' => $property]) }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 rounded-4 transition hover-shadow">
-                            @if ($property->images?->first())
-                                <img src="{{ asset('storage/' . $property->images->first()->image_path) }}"
-                                    class="card-img-top rounded-top-4" style="height: 200px; object-fit: cover;">
-                            @else
-                                <div class="bg-light text-center py-5 text-muted">No Image</div>
-                            @endif
-                            <div class="card-body">
-                                <h5 class="card-title text-dark">{{ $property->title ?? 'Untitled Property' }}</h5>
-                                <p class="card-text text-muted mb-1">📏 Area: {{ $property->land_area }} m²</p>
-                                <p class="card-text text-muted mb-1">🏗 Hangar: {{ $property->hangar_area }} m²
-                                    ({{ $property->hangar_type }})</p>
-                                <p class="card-text text-muted mb-1">⚡ Electricity: {{ $property->electricity_power }} MW
-                                </p>
-                                <p class="card-text fw-bold text-primary">💰 {{ number_format($property->price) }} EGP</p>
-                            </div>
-                        </div>
-                    </a>
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+    <div class="card h-100 shadow-sm border-0 rounded-4 position-relative overflow-hidden property-card transition">
+        
+        <a href="{{ route('properties.show', ['property' => $property]) }}" class="text-decoration-none text-reset">
+            @if ($property->images?->first())
+                <img src="{{ asset('storage/' . $property->images->first()->path) }}"
+                    class="card-img-top rounded-top-4" style="height: 200px; object-fit: cover;">
+            @else
+                <div class="d-flex align-items-center justify-content-center bg-light text-muted" 
+                     style="height: 200px; border-top-left-radius: .75rem; border-top-right-radius: .75rem;">
+                    <i class="bi bi-image" style="font-size: 2rem;"></i>
+                    <span class="ms-2">No Image</span>
                 </div>
+            @endif
+
+            <div class="card-body px-3 py-2">
+                <h5 class="card-title text-dark fw-semibold mb-2">
+                    {{ $property->title ?? 'Untitled Property' }}
+                </h5>
+
+                <ul class="list-unstyled text-muted small mb-2">
+                    <li><i class="bi bi-rulers"></i> Area: {{ $property->land_area }} m²</li>
+                    <li><i class="bi bi-building"></i> Hangar: {{ $property->hangar_area ?? 0 }} m² ({{ ucfirst($property->hangar_type ?? '-') }})</li>
+                    <li><i class="bi bi-lightning-charge"></i> Electricity: {{ $property->electricity_power ?? 0 }} {{ strtoupper($property->electricity_unit) }}</li>
+                </ul>
+
+                <p class="fw-bold text-primary fs-6 mb-1">
+                    💰 {{ number_format($property->price, 0) }} EGP
+                </p>
+
+                <small class="text-muted">Created: {{ $property->created_at->format('d M Y') }}</small>
+            </div>
+        </a>
+
+        {{-- Footer buttons --}}
+        <div class="card-footer bg-white border-top d-flex justify-content-between px-3 py-2">
+            <a href="{{ route('properties.edit', $property) }}" class="btn btn-sm btn-outline-primary">
+                <i class="bi bi-pencil"></i>
+            </a>
+
+            <form action="{{ route('properties.destroy', $property) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-sm btn-outline-danger" type="submit">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
             @empty
                 <div class="container w-50">
                     <div class="alert alert-warning">No properties found.</div>
